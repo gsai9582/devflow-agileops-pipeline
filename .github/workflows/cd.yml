@@ -9,16 +9,19 @@ on:
 
 jobs:
   deploy:
+    name: Continuous Deployment Simulation
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
       - name: Deploy Simulation
         run: |
-          echo "🚀 Starting Deployment to Cloud..."
-          echo "📦 Packaging artifacts..."
-          sleep 5
-          echo "☁️ Uploading to production cluster..."
-          sleep 5
+          echo "🚀 Starting Deployment Pipeline to Cloud..."
+          echo "📦 Packaging production artifacts..."
+          sleep 2
+          echo "🌐 Uploading to production cluster..."
+          sleep 2
           echo "✅ Deployment Successful!"
-          echo "🌎 Live URL: https://devflow-app.demo"
+          echo "🔗 Production Healthcheck: https://devflow-app.demo/health"
