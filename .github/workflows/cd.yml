@@ -1,0 +1,24 @@
+name: DevFlow CD
+
+on:
+  workflow_run:
+    workflows: ["DevFlow CI"]
+    types:
+      - completed
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy Simulation
+        run: |
+          echo "🚀 Starting Deployment to Cloud..."
+          echo "📦 Packaging artifacts..."
+          sleep 5
+          echo "☁️ Uploading to production cluster..."
+          sleep 5
+          echo "✅ Deployment Successful!"
+          echo "🌎 Live URL: https://devflow-app.demo"
